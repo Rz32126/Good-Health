@@ -5,16 +5,46 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import MainLayout from './components/MainLayout';
+import Home from './pages/Home';
+import ErrorPage from './pages/ErrorPage';
+import AuthProvider from './provider/AuthProvider';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <div>Hello world!</div>,
+  { path: "/",
+    element: <MainLayout></MainLayout>,
+    children: [
+      {
+        path: '/',
+        element: <Home></Home>
+      },
+      {
+        path: '/login',
+        element: <Login></Login>
+      },
+      {
+        path: '/register',
+        element: <Register></Register>
+      },
+      {
+        path: '/dashboard',
+        element: <Dashboard></Dashboard>
+      }
+    ]
   },
+  {
+    path: "*",
+    element: <ErrorPage></ErrorPage>
+  } 
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )
