@@ -29,16 +29,16 @@ const router = createBrowserRouter([
         path: '/register',
         element: <Register></Register>
       },
-      {
-        path: '/dashboard',
-        element: <Dashboard></Dashboard>
-      }
     ]
   },
   {
     path: "*",
     element: <ErrorPage></ErrorPage>
-  } 
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard></Dashboard>
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(

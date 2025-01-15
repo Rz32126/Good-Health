@@ -1,8 +1,8 @@
-import { AiOutlineMenu } from 'react-icons/ai'
 import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import img from '../assets/Screenshot 2024-11-19 141752.png'
 import { AuthContext } from '../provider/AuthProvider'
+import { RiMenuAddFill } from 'react-icons/ri'
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext)
   const [isOpen, setIsOpen] = useState(false)
@@ -12,8 +12,8 @@ const Navbar = () => {
       <div className='py-4 border-b-[1px]'>
           <div className='flex items-center justify-between gap-3 md:gap-0'>
             <div className='flex gap-2 items-center'>
-              <img src="https://i.ibb.co.com/qDDHcwC/Screenshot-2024-12-24-223953.png" alt='logo' width='100' height='100' />
-              <p className='font-extrabold'>Good Health</p>
+              <img src="https://i.ibb.co.com/n0CqRT3/freestocks-nss2e-Rz-Qwgw-unsplash.jpg" alt='logo' width='100' height='100' className='rounded-full' />
+              <p className='font-extrabold text-2xl text-blue-500'>Good Health</p>
             </div>
             <div className='lg:flex lg:gap-9 font-semibold'>
               <Link to="/">Home</Link>
@@ -25,7 +25,7 @@ const Navbar = () => {
                   onClick={() => setIsOpen(!isOpen)}
                   className='p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
                 >
-                  <AiOutlineMenu />
+                  <RiMenuAddFill />
                   <div className='hidden md:block'>
                     <img
                       className='rounded-full'

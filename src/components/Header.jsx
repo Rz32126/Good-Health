@@ -6,7 +6,7 @@ const Header = () => {
      <Carousel className="rounded-xl mt-24">
        <div className="relative min-h-screen w-full">
          <img
-           src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
+           src="https://i.ibb.co.com/8xn7qsL/zhen-h-Xruf17-Orkw-M-unsplash.jpg"
            alt="image 1"
            className="min-h-screen w-full object-cover"
          />
