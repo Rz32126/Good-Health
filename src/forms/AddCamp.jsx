@@ -34,7 +34,7 @@ const AddCamp = () => {
       } 
      
     return (
-        <div className='lg:w-5/12 mx-auto bg-purple-300 mt-5 mb-5 rounded-2xl'>
+        <div className='lg:w-7/12 mx-auto bg-purple-300 mb-5 rounded-2xl'>
 
         <div className='mx-7 px-5 py-12'>
 
@@ -55,35 +55,38 @@ const AddCamp = () => {
           <input type="text" {...register("photo", { required: "Put a photo url" })} name="photo" placeholder="Put a photo url here" className="input input-bordered" />
           {errors?.photo && <span className="text-red-600">{errors?.photo?.message}</span>}
             </div>
-            <div className="form-control">
+          <div className='flex'>
+             <div className="form-control w-6/12">
           <label className="label">
             <span className="label-text">Camp Fees</span>
           </label>
           <input type="number" {...register("fee", { required: "Camp fee required" })} name="fee" placeholder="Put Total Camp Fee" className="input input-bordered" />
           {errors?.fee && <span className="text-red-600">{errors?.fee?.message}</span>}
-            </div>
-
-            <div className="form-control">
+             </div>
+             <div className="form-control ml-4 w-6/12">
           <label className="label">
             <span className="label-text">Date & Time</span>
           </label>
           <input type="text" {...register("date", { required: "Give the Date and Time" })} name="date" placeholder="Date & Time" className="input input-bordered" />
           {errors?.date && <span className="text-red-600">{errors?.date?.message}</span>}
-        </div>
-        <div className="form-control">
+             </div>
+          </div>
+        <div className='flex gap-4'>
+            <div className="form-control w-6/12">
           <label className="label">
             <span className="label-text">Location</span>
           </label>
           <input type="text" {...register("location", { required: "location is required" })} name="location" placeholder="location" className="input input-bordered" />
           {errors?.location && <span className="text-red-600">{errors?.location?.message}</span>}
             </div>
-            <div className="form-control">
+            <div className="form-control w-6/12">
           <label className="label">
-            <span className="label-text">Healthcare Professional Name</span>
+            <span className="label-text">Healthcare Name</span>
           </label>
-          <input type="text" {...register("health", { required: "HealthCare is required" })} name="health" placeholder="HealthCare Professional Name" className="input input-bordered" />
+          <input type="text" {...register("health", { required: "HealthCare is required" })} name="health" placeholder="HealthCare Name" className="input input-bordered" />
           {errors?.health && <span className="text-red-600">{errors?.health?.message}</span>}
             </div>
+        </div>
             <div className="form-control">
           <label className="label">
             <span className="label-text">participant count</span>

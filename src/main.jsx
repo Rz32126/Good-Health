@@ -20,6 +20,14 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import AvailableCamp from './components/AvailableCamp';
+import AddCamp from './forms/AddCamp';
+import MyProfile from './components/MyProfile';
+import ManageCamp from './components/ManageCamp';
+import ManageRegister from './components/ManageRegister';
+import Analytics from './components/Analytics';
+import CampRegister from './components/CampRegister';
+import Payment from './components/Payment';
+import CampDetails from './components/CampDetails';
 
 const queryClient = new QueryClient()
 
@@ -43,6 +51,10 @@ const router = createBrowserRouter([
         path: '/available-camps',
         element: <AvailableCamp></AvailableCamp>
       },
+      {
+        path: '/camp-details/:id',
+        element: <CampDetails></CampDetails>
+      },
     ]
   },
   {
@@ -51,7 +63,37 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <Dashboard></Dashboard>
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        index: true,
+        element: <MyProfile></MyProfile>
+      },
+      {
+        path: 'add-camp',
+        element: <AddCamp></AddCamp>
+      },
+      {
+        path: 'manage-camp',
+        element: <ManageCamp></ManageCamp>
+      },
+      {
+        path: 'manage-register',
+        element: <ManageRegister></ManageRegister>
+      },
+      {
+        path: 'analytics',
+        element: <Analytics></Analytics>
+      },
+      {
+        path: 'camp-register',
+        element: <CampRegister></CampRegister>
+      },
+      {
+        path: 'payment',
+        element: <Payment></Payment>
+      },
+    ]
   }
 ]);
 

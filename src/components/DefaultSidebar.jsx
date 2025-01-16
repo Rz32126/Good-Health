@@ -30,31 +30,25 @@ import { Link } from "react-router-dom";
           <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />
             </ListItemPrefix>
-            My Profile
+            <Link to='/dashboard'>My Profile</Link> 
           </ListItem>
           <ListItem>
             <ListItemPrefix>
               <ShoppingBagIcon className="h-5 w-5" />
             </ListItemPrefix>
-            Add a Camp
+            <Link to='add-camp'>Add a Camp</Link>
           </ListItem>
           <ListItem>
             <ListItemPrefix>
               <InboxIcon className="h-5 w-5" />
             </ListItemPrefix>
-            Manage Camps
+            <Link to='manage-camp'>Manage Camps</Link>
           </ListItem>
           <ListItem>
           <ListItemPrefix>
               <PresentationChartBarIcon className="h-5 w-5" />
             </ListItemPrefix>
-            Manage Registered Camps
-          </ListItem>
-          <ListItem>
-            <ListItemPrefix>
-              <Cog6ToothIcon className="h-5 w-5" />
-            </ListItemPrefix>
-            Settings
+            <Link to='manage-register'>Manage Registered Camps</Link>
           </ListItem>
           <ListItem>
             <ListItemPrefix>
@@ -63,7 +57,7 @@ import { Link } from "react-router-dom";
 </svg>
 
             </ListItemPrefix>
-            Analytics
+            <Link to='analytics'>Analytics</Link>
           </ListItem>
           <ListItem>
             <ListItemPrefix>
@@ -72,7 +66,7 @@ import { Link } from "react-router-dom";
 </svg>
 
             </ListItemPrefix>
-            Registered Camps
+            <Link to='camp-register'>Registered Camps</Link>
           </ListItem>
           <ListItem>
             <ListItemPrefix>
@@ -80,7 +74,7 @@ import { Link } from "react-router-dom";
   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
 </svg>
             </ListItemPrefix>
-            Payment History
+            <Link to='payment'>Payment History</Link>
           </ListItem>
         </List>
       </Card>
