@@ -7,6 +7,15 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext)
   const [isOpen, setIsOpen] = useState(false)
 
+  const handleLogOut = () => {
+    logOut()
+    .then(() => {
+      console.log('log out')})
+    .catch(error => {
+      console.log('failed')
+    })
+  }
+
   return (
     <div className='w-full bg-white'>
       <div className='py-4 border-b-[1px]'>
@@ -17,7 +26,7 @@ const Navbar = () => {
             </div>
             <div className='lg:flex lg:gap-9 font-semibold'>
               <Link to="/">Home</Link>
-              <p>Available Camps</p>
+              <Link to='available-camps'>Available Camps</Link>
             </div>
             <div className='relative'>
               <div className='flex flex-row items-center gap-3'>
@@ -44,16 +53,16 @@ const Navbar = () => {
 
                     {user ? (
                       <>
-                        <div className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'>{user && user.displayName ? user.displayName : <p>User Name</p>}</div>
+                        <div className='px-4 py-3 hover:bg-neutral-200 transition font-semibold'>{user && user.displayName ? user.displayName : <p>User Name</p>}</div>
                         <Link
                           to='/dashboard'
-                          className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                          className='px-4 py-3 hover:bg-neutral-200 transition font-semibold'
                         >
                           Dashboard
                         </Link>
                         <div
-                          onClick={logOut}
-                          className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer'
+                          onClick={handleLogOut}
+                          className='px-4 py-3 hover:bg-neutral-200 transition font-semibold cursor-pointer'
                         >
                           Logout
                         </div>

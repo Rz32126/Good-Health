@@ -12,6 +12,16 @@ import AuthProvider from './provider/AuthProvider';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import AvailableCamp from './components/AvailableCamp';
+
+const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
   { path: "/",
@@ -29,6 +39,10 @@ const router = createBrowserRouter([
         path: '/register',
         element: <Register></Register>
       },
+      {
+        path: '/available-camps',
+        element: <AvailableCamp></AvailableCamp>
+      },
     ]
   },
   {
@@ -44,7 +58,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+         <RouterProvider router={router} />
+      </QueryClientProvider>
     </AuthProvider>
   </StrictMode>,
 )

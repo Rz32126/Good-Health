@@ -46,36 +46,6 @@ const AuthProvider = ({ children }) => {
     })
   }
 
-  
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async currentUser => {
-      console.log(currentUser)
-      if(currentUser?.email) {
-        setUser(currentUser)
-        await axios.post(
-          `${import.meta.env.VITE_API_URL}/users/${currentUser?.email}`,{
-           name: currentUser?.displayName, 
-           image: currentUser?.photoURL,
-           role: 'customer',
-          }
-        )
-        const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`,
-          {email: currentUser?.email}, 
-          { withCredentials: true }
-        )
-        console.log(data)
-      }else {
-        setUser(currentUser)
-        const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/logout`,
-          { withCredentials: true }
-        )
-      }
-      setLoading(false)
-    })
-    return () => {
-      return unsubscribe()
-    }
-  }, [])
 
   const authInfo = {
     user,
@@ -88,6 +58,37 @@ const AuthProvider = ({ children }) => {
     logOut,
     updateUserProfile,
   }
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      console.log(currentUser)
+      if(currentUser?.email) {
+        setUser(currentUser)
+        await axios.post(
+          `${import.meta.env.VITE_API_URL}/users/${currentUser?.email}`,{
+           name: currentUser?.displayName, 
+           image: currentUser?.photoURL,
+           email: currentUser?.email,
+          }
+        )
+      //   const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`,
+      //     {email: currentUser?.email}, 
+      //     { withCredentials: true }
+      //   )
+      //   console.log(data)
+      // }else {
+      //   setUser(currentUser)
+      //   const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/logout`,
+      //     { withCredentials: true }
+      //   )
+        }else{
+          setUser(currentUser)
+        }
+      setLoading(false)
+    })
+    return () => {
+      return unsubscribe()
+    }
+  }, [])
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
