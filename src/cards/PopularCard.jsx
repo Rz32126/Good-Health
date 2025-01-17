@@ -6,11 +6,9 @@ import {
     Typography,
     Button,
   } from "@material-tailwind/react";
-// import { useState } from "react";
 import { Link } from "react-router-dom";
    
-  export function AvailableCard({camp}) {
-    // const [totalParticipant, setTotalParticipant] = useState(0)
+export default function PopularCard({camp}) {
     const {_id,photo,date,fee,name,health,location,count} = camp || {}
     return (
         <Card className="mt-6 w-96">
@@ -24,9 +22,6 @@ import { Link } from "react-router-dom";
           <Typography variant="h5" color="black" className="mb-2">
             Name: {name}
           </Typography>
-          {/* <Typography>
-            <span className="font-semibold">Description:</span> {description}
-          </Typography> */}
           <p className="font-semibold">Camp Fee: ${fee}</p>
           <p className="font-semibold">Date & Time:{date}</p>
           <p className="font-semibold">Location: {location}</p>

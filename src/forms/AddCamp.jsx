@@ -91,7 +91,7 @@ const AddCamp = () => {
           <label className="label">
             <span className="label-text">participant count</span>
           </label>
-          <input type="text" {...register("count", { required: "count is required" })} name="count" placeholder="count address" className="input input-bordered" />
+          <input type="text" defaultValue={0} disable={true} {...register("count", { required: "count is required" })} name="count" placeholder="count address" className="input input-bordered" />
           {errors?.count && <span className="text-red-600">{errors?.count?.message}</span>}
             </div>
             <div className="form-control">
