@@ -3,10 +3,13 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
 import { Card, CardBody, CardFooter, CardHeader, Typography } from "@material-tailwind/react";
+import { useState } from "react";
+import JoinModal from "../cards/JoinModal";
 
 
 const CampDetails = () => {
     const { id } = useParams()
+    let [isOpen, setIsOpen] = useState(false)
     const {data: camp = [], isLoading, refetch} = useQuery({
         queryKey:['camp', id],
         queryFn: async() => {
@@ -14,7 +17,10 @@ const CampDetails = () => {
           return data
         }
     })
-    const {_id,photo,date,name,health,description,location} = camp || {}
+    const closeModal = () => {
+        setIsOpen(false)
+    }
+    const {photo,date,fee,name,health,description,location} = camp || {}
     if(isLoading) return <LoadingSpinner></LoadingSpinner>
     return (
         <div>
@@ -35,12 +41,16 @@ const CampDetails = () => {
           <p className="font-semibold">Location: {location}</p>
           <p className="font-semibold">Date & Time:{date}</p>
           <p className="font-semibold">HealthCare Name:{health}</p>
+          <p>Camp Fee: ${fee}</p>
           
         </CardBody>
         <CardFooter className="pt-0 flex justify-center">
-          <button className="btn bg-yellow-600">Join now</button>
+          <button onClick={() => setIsOpen(true)} className="btn bg-yellow-600">Join Camp Now</button>
         </CardFooter>
         </Card>
+        <div className="hidden">
+        <JoinModal closeModal={closeModal} isOpen={isOpen} setIsOpen={setIsOpen} camp={camp}></JoinModal>
+        </div>
         </div>
     );
 };
