@@ -10,7 +10,7 @@ import JoinModal from "../cards/JoinModal";
 const CampDetails = () => {
     const { id } = useParams()
     let [isOpen, setIsOpen] = useState(false)
-    const {data: camp = [], isLoading, refetch} = useQuery({
+    const {data: camp = {}, isLoading, refetch} = useQuery({
         queryKey:['camp', id],
         queryFn: async() => {
           const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/camp/${id}`)
@@ -20,13 +20,14 @@ const CampDetails = () => {
     const closeModal = () => {
         setIsOpen(false)
     }
-    const {photo,date,fee,name,health,description,location} = camp || {}
+    const {photo, date, fee, name, count, health, description,location} = camp || {}
     if(isLoading) return <LoadingSpinner></LoadingSpinner>
     return (
         <div>
              <Card className="mt-6 w-10/12 mx-auto">
-        <CardHeader color="blue-gray" className="relative h-64 object-cover w-11/12 mx-auto">
+        <CardHeader className="relative w-11/12 mx-auto bg-gray-400 mt-3">
           <img
+            className="h-64 object-cover w-10/12 mx-auto"
             src={photo}
             alt="card-image"
           />
@@ -35,13 +36,14 @@ const CampDetails = () => {
           <Typography variant="h5" color="black" className="mb-2">
             Name: {name}
           </Typography>
+          <p className="font-semibold">Camp Fee: ${fee}</p>
+          <p className="font-semibold">Location: {location}</p>
+          <p className="font-semibold">Date & Time: {date}</p>
+          <p className="font-semibold">Participant Count: {count}</p>
+          <p className="font-semibold">HealthCare Name: {health}</p>
           <Typography>
             <span className="font-semibold">Description:</span> {description}
           </Typography>
-          <p className="font-semibold">Location: {location}</p>
-          <p className="font-semibold">Date & Time:{date}</p>
-          <p className="font-semibold">HealthCare Name:{health}</p>
-          <p>Camp Fee: ${fee}</p>
           
         </CardBody>
         <CardFooter className="pt-0 flex justify-center">
@@ -49,7 +51,7 @@ const CampDetails = () => {
         </CardFooter>
         </Card>
         <div className="hidden">
-        <JoinModal closeModal={closeModal} isOpen={isOpen} setIsOpen={setIsOpen} camp={camp}></JoinModal>
+        <JoinModal closeModal={closeModal} isOpen={isOpen} setIsOpen={setIsOpen} camp={camp} refetch={refetch}></JoinModal>
         </div>
         </div>
     );

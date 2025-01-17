@@ -14,6 +14,7 @@ export default function PopularCard({camp}) {
         <Card className="mt-6 w-96">
         <CardHeader color="blue-gray" className="relative h-56">
           <img
+            className="h-56 object-cover"
             src={photo}
             alt="card-image"
           />

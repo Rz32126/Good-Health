@@ -28,6 +28,7 @@ import Analytics from './components/Analytics';
 import CampRegister from './components/CampRegister';
 import Payment from './components/Payment';
 import CampDetails from './components/CampDetails';
+import { Toaster } from 'react-hot-toast';
 
 const queryClient = new QueryClient()
 
@@ -103,6 +104,7 @@ createRoot(document.getElementById('root')).render(
       <QueryClientProvider client={queryClient}>
          <RouterProvider router={router} />
       </QueryClientProvider>
+      <Toaster></Toaster>
     </AuthProvider>
   </StrictMode>,
 )

@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import {toast, Toaster} from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../provider/AuthProvider';
 import axios from 'axios';
@@ -14,8 +14,10 @@ const AddCamp = () => {
       } = useForm()
       const onSubmit=  async (data) => {
         setLoading(true)
+        const {count} = data
         const participant = {
             ...data,
+            count: parseInt(count),
             participant:{
             email: user?.email, 
             name: user?.displayName, 
@@ -91,7 +93,7 @@ const AddCamp = () => {
           <label className="label">
             <span className="label-text">participant count</span>
           </label>
-          <input type="text" defaultValue={0} disable={true} {...register("count", { required: "count is required" })} name="count" placeholder="count address" className="input input-bordered" />
+          <input type="number" defaultValue={0} {...register("count", { required: "count is required" })} name="count" placeholder="count address" className="input input-bordered" />
           {errors?.count && <span className="text-red-600">{errors?.count?.message}</span>}
             </div>
             <div className="form-control">
@@ -111,7 +113,6 @@ const AddCamp = () => {
             </div>
           </form>
         </div>
-        <Toaster></Toaster>
     </div>
     );
 };

@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
-import img from '../assets/Screenshot 2024-11-19 141752.png'
+import img from '../assets/Screenshot 2025-01-18 022021.png'
 import { AuthContext } from '../provider/AuthProvider'
 import { RiMenuAddFill } from 'react-icons/ri'
 const Navbar = () => {
@@ -17,15 +17,15 @@ const Navbar = () => {
   }
 
   return (
-    <div className='w-full bg-white'>
+    <div className='w-full bg-blue-50'>
       <div className='py-4 border-b-[1px]'>
           <div className='flex items-center justify-between gap-3 md:gap-0'>
             <div className='flex gap-2 items-center'>
-              <img src="https://i.ibb.co.com/n0CqRT3/freestocks-nss2e-Rz-Qwgw-unsplash.jpg" alt='logo' width='100' height='100' className='rounded-full' />
+              <img src="https://i.ibb.co.com/wr3cW1D/Screenshot-2025-01-18-022805.png" alt='logo' width='100' height='100' className='rounded-2xl' />
               <p className='font-extrabold text-2xl text-blue-500'>Good Health</p>
             </div>
             <div className='lg:flex lg:gap-9 font-semibold'>
-              <Link to="/">Home</Link>
+              <Link to="/">Home</Link><br></br>
               <Link to='available-camps'>Available Camps</Link>
             </div>
             <div className='relative'>

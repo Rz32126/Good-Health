@@ -6,11 +6,11 @@ const Header = () => {
      <Carousel className="rounded-xl mt-24">
        <div className="relative min-h-screen w-full">
          <img
-           src="https://i.ibb.co.com/8xn7qsL/zhen-h-Xruf17-Orkw-M-unsplash.jpg"
+           src="https://i.ibb.co.com/rQvTykd/Screenshot-2025-01-18-020517.png"
            alt="image 1"
            className="min-h-screen w-full object-cover"
          />
-         <div className="absolute inset-0 grid h-full w-full place-items-center bg-black/75">
+         <div className="absolute inset-0 grid h-full w-full place-items-center bg-black/55">
            <div className="w-3/4 text-center md:w-2/4">
              <Typography
                variant="h1"
@@ -42,11 +42,11 @@ const Header = () => {
        </div>
        <div className="relative min-h-screen w-full">
          <img
-           src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
+           src="https://i.ibb.co.com/B6h0WbZ/Screenshot-2025-01-18-020254.png"
            alt="image 2"
            className="min-h-screen w-full object-cover"
          />
-         <div className="absolute inset-0 grid h-full w-full items-center bg-black/75">
+         <div className="absolute inset-0 grid h-full w-full items-center bg-black/55">
            <div className="w-3/4 pl-12 md:w-2/4 md:pl-20 lg:pl-32">
              <Typography
                variant="h1"
@@ -78,11 +78,11 @@ const Header = () => {
        </div>
        <div className="relative min-h-screen w-full">
          <img
-           src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
+           src="https://i.ibb.co.com/6ZkpB4r/Screenshot-2025-01-18-021314.png"
            alt="image 3"
            className="min-h-screen w-full object-cover"
          />
-         <div className="absolute inset-0 grid h-full w-full items-end bg-black/75">
+         <div className="absolute inset-0 grid h-full w-full items-end bg-black/55">
            <div className="w-3/4 pl-12 pb-12 md:w-2/4 md:pl-20 md:pb-20 lg:pl-32 lg:pb-32">
              <Typography
                variant="h1"

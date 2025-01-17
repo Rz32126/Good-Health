@@ -1,11 +1,14 @@
 import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useContext, useState } from 'react'
 import { AuthContext } from '../provider/AuthProvider'
+import axios from 'axios'
+import toast from 'react-hot-toast'
 
 
-export default function JoinModal({ closeModal, isOpen, setIsOpen, camp}) {
+export default function JoinModal({ closeModal, isOpen, setIsOpen, camp, refetch}) {
 const {user} = useContext(AuthContext)
-const { health, name, fee, location, _id } = camp || {}
+const { health, name, fee, count, location, _id } = camp || {}
+// const participantCount = parseInt(count);
 const [registerInfo, setRegisterInfo] = useState({
   participant:{
     name: user?.displayName,
@@ -21,17 +24,30 @@ const [registerInfo, setRegisterInfo] = useState({
 const handleRegister = async () => {
   registerInfo.email = user?.email
   registerInfo.name = user?.displayName
-  console.log(registerInfo)
+  // console.log(registerInfo)
+  try{
+    await axios.post(`${import.meta.env.VITE_API_URL}/register`, registerInfo)
+    await axios.patch(`${import.meta.env.VITE_API_URL}/camps/count/${_id}`, {countToUpdate: count})
+    toast.success('Successfully Your Register done.')
+    refetch()
+  }catch(err){
+    console.log(err)
+  }
+  finally{
+    closeModal()
+  }
+
 }
   return (
-    <>
+    <div>
       <button onClick={() => setIsOpen(true)}>Open dialog</button>
-      <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
+      <Dialog open={isOpen} onClose={closeModal} className="relative z-50">
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
           <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
             <DialogTitle className="font-bold">Name: {name}</DialogTitle>
             <Description>Camp Fee: ${fee}</Description>
             <p>Location: {location}</p>
+            {/* <p>Participant Count: {count}</p> */}
             <p>Healthcare Professional Name: {health}</p>
             <p
             // name='name'
@@ -88,6 +104,6 @@ const handleRegister = async () => {
           </DialogPanel>
         </div>
       </Dialog>
-    </>
+    </div>
   )
 }

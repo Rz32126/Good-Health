@@ -12,10 +12,12 @@ import { Link } from "react-router-dom";
   export function AvailableCard({camp}) {
     // const [totalParticipant, setTotalParticipant] = useState(0)
     const {_id,photo,date,fee,name,health,location,count} = camp || {}
+    const participantCount = parseInt(count);
     return (
         <Card className="mt-6 w-96">
-        <CardHeader color="blue-gray" className="relative h-56">
+        <CardHeader className="relative mt-3">
           <img
+            className="h-56 object-cover"
             src={photo}
             alt="card-image"
           />
@@ -32,7 +34,7 @@ import { Link } from "react-router-dom";
           <p className="font-semibold">Location: {location}</p>
           <p className="font-semibold">HealthCare Name: {health}</p>
           {/* value={totalParticipant} onChange={(e) => setTotalParticipant(e.target.value)} */}
-          <p className="font-semibold">Participant Count: {count}</p>
+          <p className="font-semibold">Participant Count: {participantCount}</p>
           
         </CardBody>
         <CardFooter className="pt-0">
