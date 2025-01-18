@@ -21,7 +21,7 @@ const UpdateCamp = () => {
   useEffect(() => {
     const fetchCampData = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/update-camp/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/camp/${id}`);
         const campData = response.data;
 
         setValue("name", campData.name);
@@ -56,7 +56,7 @@ const UpdateCamp = () => {
     };
 
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/update-camp/${id}`, participant);
+      const response = await axios.put(`${import.meta.env.VITE_API_URL}/update-camp/${id}`, participant);
       console.log(response.data);
       toast.success("Data Updated Successfully");
       reset();
@@ -71,7 +71,7 @@ const UpdateCamp = () => {
 
   return (
     <div className='w-10/12 mx-auto bg-green-300 mb-5 rounded-2xl'>
-      <div className='mx-7 px-5 py-12'>
+        <div className='mx-7 px-5 py-12'>
         <h1 className='text-xl font-bold text-center'>Update Your Camps Here</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
