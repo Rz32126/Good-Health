@@ -4,6 +4,8 @@ import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import LoadingSpinner from "./LoadingSpinner";
 import { AiOutlineDelete } from "react-icons/ai";
+import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 
 const CampRegister = () => {
@@ -15,7 +17,34 @@ const CampRegister = () => {
           return data
         }
     })
-    console.log(registers)
+    const handleDelete = async (id) => {
+        try{
+         const {data} = await axios.delete(`${import.meta.env.VITE_API_URL}/delete-register/${id}`)
+         console.log(data)
+         toast.success('Successfully cancel the Registration!!')
+         refetch()
+        }catch(err){
+          console.log(err)
+          toast.error(err.message)
+        }
+      }
+      const toastForDelete = (id) => {
+        toast(
+          (t) => (
+            <div className='flex gap-3 items-center'>
+              <div><p>Are you <b>Sure?</b> </p></div>
+              <div>
+                <button className='bg-red-600 text-white px-3 py-1 rounded-md'
+                  onClick={() => {
+                    handleDelete(id);
+                    toast.dismiss(t.id);
+                  }}>Yes</button>
+                <button className='bg-green-600 ml-3 text-white px-3 py-1 rounded-md' onClick={() => toast.dismiss(t.id)}>Cancel</button>
+              </div>
+            </div>
+          ),
+        );
+      };
     if(isLoading) return <LoadingSpinner></LoadingSpinner>
     return (
         <div>
@@ -46,7 +75,7 @@ const CampRegister = () => {
                 <td>
                 <button className=''>Good</button>
                 </td>
-                <td><button className='text-2xl btn text-red-600 bg-orange-100'><AiOutlineDelete /></button></td> 
+                <td><button onClick={() => toastForDelete(registerData._id)} className='text-2xl btn text-red-600 bg-orange-100'><AiOutlineDelete /></button></td> 
              </tr>)   
         }
       </tbody>
