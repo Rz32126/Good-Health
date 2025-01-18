@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import LoadingSpinner from "./LoadingSpinner";
 import { AiOutlineDelete } from "react-icons/ai";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 
 
@@ -25,7 +25,7 @@ const CampRegister = () => {
          refetch()
         }catch(err){
           console.log(err)
-          toast.error(err.message)
+          toast.error(err.response.data)
         }
       }
       const toastForDelete = (id) => {
@@ -71,7 +71,7 @@ const CampRegister = () => {
                 <td>$ {registerData.fee}</td>
                 <td>{registerData.participant.name}</td>
                 <td>{registerData.status}</td>
-                <td>Confirm</td>
+                <td>Complete</td>
                 <td>
                 <button className=''>Good</button>
                 </td>

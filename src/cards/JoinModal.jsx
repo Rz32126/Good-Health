@@ -3,9 +3,11 @@ import { useContext, useState } from 'react'
 import { AuthContext } from '../provider/AuthProvider'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function JoinModal({ closeModal, isOpen, setIsOpen, camp, refetch}) {
+const navigate = useNavigate()
 const {user} = useContext(AuthContext)
 const { health, name, fee, count, location, _id } = camp || {}
 // const participantCount = parseInt(count);
@@ -32,6 +34,7 @@ const handleRegister = async () => {
     await axios.patch(`${import.meta.env.VITE_API_URL}/camps/count/${_id}`, {countToUpdate: count})
     toast.success('Successfully Your Register done.')
     refetch()
+    navigate('/dashboard/camp-register')
   }catch(err){
     console.log(err)
   }
@@ -49,21 +52,12 @@ const handleRegister = async () => {
             <DialogTitle className="font-bold">Camp Name: {name}</DialogTitle>
             <Description>Camp Fee: ${fee}</Description>
             <p>Location: {location}</p>
-            {/* <p>Participant Count: {count}</p> */}
             <p>Healthcare Professional Name: {health}</p>
             <p
-            // name='name'
-            // id='name'
-            // onChange={(e) => setRegisterInfo(prv=>{
-            //  return{...prv, name: e.target.value}
-            // })} 
+
             >Participant Name: {user?.displayName}</p>
             <p
-            // name='email'
-            // id='email'
-            // onChange={(e) => setRegisterInfo(prv=>{
-            //  return{...prv, email: e.target.value}
-            // })}
+
             >Participant Email: {user?.email}</p>
                <p className='flex'>Age: <input
                name='age'
@@ -90,6 +84,7 @@ const handleRegister = async () => {
                  className="select select-bordered w-full max-w-xs">
                     <option>Male</option>
                     <option>Female</option>
+                    <option>Other</option>
                  </select>
             </div>
             <p>Emergency Contact: <input
@@ -100,8 +95,8 @@ const handleRegister = async () => {
              })}
              className='input input-bordered' type='number'></input></p>
             <div className="flex gap-4">
-              <button onClick={handleRegister}>Register</button>
-              <button onClick={() => setIsOpen(false)}>Cancel</button>
+              <button className='btn bg-green-400' onClick={handleRegister}>Register</button>
+              <button className='btn bg-red-300' onClick={() => setIsOpen(false)}>Cancel</button>
             </div>
           </DialogPanel>
         </div>
