@@ -9,13 +9,28 @@ const Login = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
       } = useForm()
-      const onSubmit=  (data) => {
+      const { signInWithGoogle, createUser} = useContext(AuthContext)
+      const navigate = useNavigate()
+      const onSubmit=  async (data) => {
         console.log(data)
+        const { email, password } = data;
+        try {
+          const result = await createUser(email, password);
+          const loggedUser = result.user;
+          console.log(loggedUser);
+          
+          toast.success('Registration Successful');
+          reset(); 
+          navigate('/'); 
+        } catch (err) {
+           console.log(err);
+           toast.error(err?.message || 'Registration failed');
+         }
       } 
-  const { signInWithGoogle } = useContext(AuthContext)
-  const navigate = useNavigate()
+  
   const handleGoogleSignIn = async () => {
     try {
       await signInWithGoogle()
@@ -28,21 +43,6 @@ const Login = () => {
     }
   }
 
-  // const handleSignIn = async e => {
-  //   e.preventDefault()
-  //   const form = e.target
-  //   const email = form.email.value
-  //   const pass = form.password.value
-  //   console.log({ email, pass })
-  //   try {
-  //     await signIn(email, pass)
-  //     toast.success('login Successfully')
-  //     navigate('/')
-  //   } catch (err) {
-  //     console.log(err)
-  //     toast.error(err?.message)
-  //   }
-  // }
 
   return (
     <div className='lg:w-5/12 mx-auto bg-red-300 mt-5 mb-5 rounded-2xl'>
@@ -94,7 +94,7 @@ const Login = () => {
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input type="text" {...register("password", { required: "Put a Password" })} name="password" placeholder="Password" className="input input-bordered" />
+          <input type="password" {...register("password", { required: "Put a Password" })} name="password" placeholder="Password" className="input input-bordered" />
           {errors?.password && <span className="text-red-600">{errors?.password?.message}</span>}
         </div>
             <div className='mt-6'>

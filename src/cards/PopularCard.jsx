@@ -33,7 +33,6 @@ export default function PopularCard({camp}) {
         </CardBody>
         <CardFooter className="pt-0">
         <Link to={`/camp-details/${_id}`}><Button>Details</Button></Link>
-          <button className="btn">Join now</button>
         </CardFooter>
         </Card>
     );

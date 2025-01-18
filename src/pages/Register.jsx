@@ -8,22 +8,53 @@ const Register = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
       } = useForm()
-      const onSubmit=  (data) => {
+      const { signInWithGoogle, createUser, updateUserProfile } = useContext(AuthContext)
+      const navigate = useNavigate()
+      const onSubmit= async (data) => {
         console.log(data)
-        // createUser(data.email, data.password)
-        // .then(result => {
-        //     const loggedUser = result.user;
-        //     console.log(loggedUser);
-        // })
-      } 
-  const { signInWithGoogle } = useContext(AuthContext)
-  const navigate = useNavigate()
+        const { email, password, name } = data;
+
+        try {
+          const result = await createUser(email, password);
+          const loggedUser = result.user;
+          console.log(loggedUser);
+
+          await updateUserProfile(name)
+          console.log(result)
+    
+          await ({...result?.user, displayName:name})
+
+          // if (loggedUser) {
+          //   await updateUserProfile(loggedUser, { displayName: name, photoURL: photo });
+          //   console.log('Profile updated successfully');
+          // }
+          toast.success('Registration Successful');
+          reset(); 
+          navigate('/'); 
+        } catch (err) {
+           console.log(err);
+           toast.error(err?.message || 'Registration failed');
+         }
+       };
+
+
+      //   createUser(data.email, data.password)
+      //   .then(result => {
+      //       const loggedUser = result.user;
+      //       console.log(loggedUser);
+      //   })
+      //   toast.success('Register Successful')
+      //   reset()
+      //   navigate('/')
+      // } 
+
   const handleGoogleSignIn = async () => {
     try {
       await signInWithGoogle()
-      toast.success('Signin Successful')
+      toast.success('Register Successful')
       navigate('/')
       
     } catch (err) {
@@ -95,7 +126,7 @@ const Register = () => {
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input type="text" {...register("password", { required: "Put a Password" })} name="password" placeholder="Password" className="input input-bordered" />
+          <input type="password" {...register("password", { required: "Put a Password" })} name="password" placeholder="Password" className="input input-bordered" />
           {errors?.password && <span className="text-red-600">{errors?.password?.message}</span>}
         </div>
             <div className='mt-6'>

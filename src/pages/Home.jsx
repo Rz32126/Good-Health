@@ -1,3 +1,4 @@
+import Extra from "../components/Extra";
 import Header from "../components/Header";
 import Popular from "./Popular";
 
@@ -7,6 +8,7 @@ const Home = () => {
         <div>
             <Header></Header>
             <Popular></Popular>
+            <Extra></Extra>
         </div>
     );
 };
