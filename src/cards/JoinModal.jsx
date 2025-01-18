@@ -20,10 +20,12 @@ const [registerInfo, setRegisterInfo] = useState({
   gender: '',
   contact: '',
   status: 'Pending',
+  CampName: name,
+  fee: fee,
 })
 const handleRegister = async () => {
-  registerInfo.email = user?.email
-  registerInfo.name = user?.displayName
+  // registerInfo.email = user?.email
+  // registerInfo.name = user?.displayName
   // console.log(registerInfo)
   try{
     await axios.post(`${import.meta.env.VITE_API_URL}/register`, registerInfo)
@@ -44,7 +46,7 @@ const handleRegister = async () => {
       <Dialog open={isOpen} onClose={closeModal} className="relative z-50">
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
           <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
-            <DialogTitle className="font-bold">Name: {name}</DialogTitle>
+            <DialogTitle className="font-bold">Camp Name: {name}</DialogTitle>
             <Description>Camp Fee: ${fee}</Description>
             <p>Location: {location}</p>
             {/* <p>Participant Count: {count}</p> */}
