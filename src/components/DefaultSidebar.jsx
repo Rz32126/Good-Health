@@ -1,3 +1,4 @@
+import { SiHomepage } from "react-icons/si";
 import {
     Card,
     Typography,
@@ -11,7 +12,7 @@ import {
     PresentationChartBarIcon,
     ShoppingBagIcon,
     UserCircleIcon,
-    Cog6ToothIcon,
+    // Cog6ToothIcon,
     InboxIcon,
     // PowerIcon,
   } from "@heroicons/react/24/solid";
@@ -20,12 +21,13 @@ import { Link } from "react-router-dom";
   export function DefaultSidebar() {
     return (
       <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl bg-red-100 shadow-blue-gray-900/5">
-        <Link to="/" className="mb-2 p-4">
-          <Typography variant="h5" color="blue-gray">
-            Home Page
+        <Link to="/" className=" p-4 ">
+          <Typography className="ml-7 mt-4 flex gap-4" variant="h5" color="blue-gray">
+          <SiHomepage />Home Page
           </Typography>
         </Link>
-        <List>
+        <div className="divider"></div>
+        <List className="text-green-900">
           <ListItem>
           <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />

@@ -29,6 +29,7 @@ import CampRegister from './components/CampRegister';
 import Payment from './components/Payment';
 import CampDetails from './components/CampDetails';
 import { Toaster } from 'react-hot-toast';
+import UpdateCamp from './forms/UpdateCamp';
 
 const queryClient = new QueryClient()
 
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: '/camp-details/:id',
         element: <CampDetails></CampDetails>
+      },
+      {
+        path: '/update-camp/:id',
+        element: <UpdateCamp></UpdateCamp>
       },
     ]
   },

@@ -4,13 +4,12 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../provider/AuthProvider';
 import axios from 'axios';
 
-const AddCamp = () => {
+const UpdateCamp = () => {
     const {user} = useContext(AuthContext)
     const [loading, setLoading] = useState(false)
     const {
         register,
         handleSubmit,
-        reset,
         formState: { errors },
       } = useForm()
       const onSubmit=  async (data) => {
@@ -28,7 +27,6 @@ const AddCamp = () => {
           try{
           await axios.post(`${import.meta.env.VITE_API_URL}/camps`, participant)
           toast.success('Data added Successfully')
-          reset()
           }catch(err){
             console.log(err)
           }
@@ -38,11 +36,11 @@ const AddCamp = () => {
       } 
      
     return (
-        <div className='w-11/12 mx-auto bg-gray-300 mb-5 rounded-2xl'>
+        <div className='w-10/12 mx-auto bg-green-300 mb-5 rounded-2xl'>
 
         <div className='mx-7 px-5 py-12'>
 
-          <h1 className='text-xl font-bold text-center'>Add Your Camps Here</h1>
+          <h1 className='text-xl font-bold text-center'>Update Your Camps Here</h1>
 
           <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control">
@@ -95,7 +93,7 @@ const AddCamp = () => {
           <label className="label">
             <span className="label-text">participant count</span>
           </label>
-          <input type="number" defaultValue={0} disabled={true} {...register("count", { required: "count is required" })} name="count" placeholder="count address" className="input input-bordered" />
+          <input type="number" defaultValue={0} {...register("count", { required: "count is required" })} name="count" placeholder="count address" className="input input-bordered" />
           {errors?.count && <span className="text-red-600">{errors?.count?.message}</span>}
             </div>
             <div className="form-control">
@@ -108,9 +106,9 @@ const AddCamp = () => {
             <div className='mt-6'>
               <button
                 type='submit'
-                className='w-full px-6 py-3 text-sm font-medium text-white bg-green-800 rounded-lg'
+                className='w-full px-6 py-3 text-sm font-medium text-green-700 bg-yellow-200 rounded-lg'
               >
-                Add Now
+                Update the camp
               </button>
             </div>
           </form>
@@ -119,4 +117,4 @@ const AddCamp = () => {
     );
 };
 
-export default AddCamp;
+export default UpdateCamp;
