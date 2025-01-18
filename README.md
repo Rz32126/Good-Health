@@ -1,8 +1,14 @@
-# React + Vite
+# Your Good Health is waiting in your door
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Url: http://localhost:5173
 
-Currently, two official plugins are available:
+You can find here your most needed things about your health issues. If you face any health issues like eye,heart etc you can visit ours. Yearly we organized many paid and unpaid Medical camp.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Key Features:
+1. Easy to Use
+2. Sorting Easily
+3. Search Anyone
+4. Support Always
+5. Easy policy
+
+WE used here: React,Tailwind, Daisyui, React-icon, Axios, java and many more

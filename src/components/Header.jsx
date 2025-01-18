@@ -17,26 +17,23 @@ const Header = () => {
                color="white"
                className="mb-4 text-3xl md:text-4xl lg:text-5xl"
              >
-               The Beauty of Nature
+               Keep Your Child Always Healthy
              </Typography>
              <Typography
                variant="lead"
                color="white"
                className="mb-12 opacity-80"
              >
-               It is not so much for its beauty that the forest makes a claim
-               upon men&apos;s hearts, as for that subtle something, that quality
-               of air that emanation from old trees, that so wonderfully changes
-               and renews a weary spirit.
+               It was our previous Free Camp.This was fantastic to work with children.The camp was really Successfully done with 100% effort by our team.The organizer and participant both were finished the camp with a good work.
              </Typography>
-             <div className="flex justify-center gap-2">
+             {/* <div className="flex justify-center gap-2">
                <Button size="lg" color="white">
                  Explore
                </Button>
                <Button size="lg" color="white" variant="text">
                  Gallery
                </Button>
-             </div>
+             </div> */}
            </div>
          </div>
        </div>
@@ -53,26 +50,23 @@ const Header = () => {
                color="white"
                className="mb-4 text-3xl md:text-4xl lg:text-5xl"
              >
-               The Beauty of Nature
+               Welcome to a health and happy Heart camp
              </Typography>
              <Typography
                variant="lead"
                color="white"
                className="mb-12 opacity-80"
              >
-               It is not so much for its beauty that the forest makes a claim
-               upon men&apos;s hearts, as for that subtle something, that quality
-               of air that emanation from old trees, that so wonderfully changes
-               and renews a weary spirit.
+               In our arranged camps it was our most successful camp. The arrangement of the all the things were really fantastic and helpful.  
              </Typography>
-             <div className="flex gap-2">
+             {/* <div className="flex gap-2">
                <Button size="lg" color="white">
                  Explore
                </Button>
                <Button size="lg" color="white" variant="text">
                  Gallery
                </Button>
-             </div>
+             </div> */}
            </div>
          </div>
        </div>
@@ -89,25 +83,22 @@ const Header = () => {
                color="white"
                className="mb-4 text-3xl md:text-4xl lg:text-5xl"
              >
-               The Beauty of Nature
+               Keep safe From Corona 
              </Typography>
              <Typography
                variant="lead"
                color="white"
                className="mb-12 opacity-80"
              >
-               It is not so much for its beauty that the forest makes a claim
-               upon men&apos;s hearts, as for that subtle something, that quality
-               of air that emanation from old trees, that so wonderfully changes
-               and renews a weary spirit.
+               In the corona Time we did a big successful camp by our special trained team. It was near 2021 we started the camp and run long time till 2025.
              </Typography>
              <div className="flex gap-2">
-               <Button size="lg" color="white">
+               {/* <Button size="lg" color="white">
                  Explore
                </Button>
                <Button size="lg" color="white" variant="text">
                  Gallery
-               </Button>
+               </Button> */}
              </div>
            </div>
          </div>
