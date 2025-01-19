@@ -1,5 +1,8 @@
 # Your Good Health is waiting in your door
 
+Website Name: Good Health
+Organizer Email: admin@admin.com
+password: 121212
 Live Url: http://localhost:5173
 
 You can find here your most needed things about your health issues. If you face any health issues like eye,heart etc you can visit ours. Yearly we organized many paid and unpaid Medical camp.

@@ -49,7 +49,7 @@ const CampRegister = () => {
     return (
         <div>
         <h1 className='text-center mt-5 text-2xl font-semibold'>Manage Your Register Camps</h1>
-        <div className='mt-5 w-11/12 mx-auto bg-orange-100'>
+        <div className='mt-5 w-11/12 mx-auto bg-orange-100 rounded-xl'>
         <div className="overflow-x-auto">
           <table className="table">
            {/* head */}
