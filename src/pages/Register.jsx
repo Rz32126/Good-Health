@@ -1,8 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import {toast, Toaster} from "react-hot-toast";
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../provider/AuthProvider';
+import { saveUser } from '../api/utils';
+import axios from 'axios';
+
 
 const Register = () => {
     const {
@@ -11,10 +14,28 @@ const Register = () => {
         reset,
         formState: { errors },
       } = useForm()
-      const { signInWithGoogle, createUser, updateUserProfile } = useContext(AuthContext)
+      const { signInWithGoogle, createUser, updateUserProfile,  } = useContext(AuthContext)
       const navigate = useNavigate()
+  
+      const [image, setImage] = useState(null);
+
+      const handleImageChange = (e) => {
+        setImage(e.target.files[0]);
+      };
+    
+      const imageUpload = async (imageData) => {
+        const formData = new FormData();
+        formData.append('image', imageData);
+        const { data } = await axios.post(
+          `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
+          formData
+        );
+        return data.data.display_url;
+      };
+
       const onSubmit= async (data) => {
         console.log(data)
+
         const { email, password, name } = data;
 
         try {
@@ -22,15 +43,18 @@ const Register = () => {
           const loggedUser = result.user;
           console.log(loggedUser);
 
-          await updateUserProfile(name)
-          console.log(result)
-    
-          await ({...result?.user, displayName:name})
+          let photoURL = '';
+      if (image) {
+        photoURL = await imageUpload(image);
+        console.log('Image uploaded to ImgBB:', photoURL);
+      }
 
-          // if (loggedUser) {
-          //   await updateUserProfile(loggedUser, { displayName: name, photoURL: photo });
-          //   console.log('Profile updated successfully');
-          // }
+          await updateUserProfile(name, photoURL)
+          console.log(result)
+          await saveUser({...result?.user, displayName:name, photoURL})
+    
+          await ({...result?.user, displayName:name, photoURL})
+
           toast.success('Registration Successful');
           reset(); 
           navigate('/'); 
@@ -41,19 +65,10 @@ const Register = () => {
        };
 
 
-      //   createUser(data.email, data.password)
-      //   .then(result => {
-      //       const loggedUser = result.user;
-      //       console.log(loggedUser);
-      //   })
-      //   toast.success('Register Successful')
-      //   reset()
-      //   navigate('/')
-      // } 
-
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithGoogle()
+      const data = await signInWithGoogle()
+      await saveUser(data?.user)
       toast.success('Register Successful')
       navigate('/')
       
@@ -107,13 +122,20 @@ const Register = () => {
           <input type="text" {...register("name", { required: "Put a name" })} name="name" placeholder="Put your name here" className="input input-bordered" />
           {errors?.name && <span className="text-red-600">{errors?.name?.message}</span>}
           </div>
-            <div className="form-control">
+        <input
+          type="file"
+          className='mt-3'
+          accept="image/*"
+          onChange={handleImageChange}
+        />
+        {image && <p>Image selected: {image.name}</p>}
+            {/* <div className="form-control">
           <label className="label">
             <span className="label-text">Photo Url</span>
           </label>
-          <input type="text" {...register("photo", { required: "Put a photo url" })} name="photo" placeholder="Put your photo url here" className="input input-bordered" />
+          <input  onChange={handleImageChange} type="text" {...register("photo", { required: "Put a photo url" })} name="photo" placeholder="Put your photo url here" className="input input-bordered" />
           {errors?.photo && <span className="text-red-600">{errors?.photo?.message}</span>}
-            </div>
+            </div> */}
             <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>

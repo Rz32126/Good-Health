@@ -5,9 +5,10 @@ import { useQuery } from "@tanstack/react-query";
 
 
 const useRole = () => {
-    const { user } = useContext(AuthContext)
+    const { user, loading } = useContext(AuthContext)
     const {data: role, isLoading} = useQuery({
         queryKey:['role', user?.email],
+        enabled: !loading && !!user?.email,
         queryFn: async() => {
           const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/users/role/${user?.email}`)
           return data.role

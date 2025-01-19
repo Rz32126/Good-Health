@@ -30,6 +30,9 @@ import Payment from './components/Payment';
 import CampDetails from './components/CampDetails';
 import { Toaster } from 'react-hot-toast';
 import UpdateCamp from './forms/UpdateCamp';
+import PrivetRoute from './provider/PrivetRoute';
+import AdminRoute from './provider/AdminRoute';
+import ParticipantRoute from './provider/ParticipantRoute';
 
 const queryClient = new QueryClient()
 
@@ -73,27 +76,49 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <MyProfile></MyProfile>
+        element: <PrivetRoute>
+                   <MyProfile></MyProfile>
+                </PrivetRoute>
       },
       {
         path: 'add-camp',
-        element: <AddCamp></AddCamp>
+        element: <PrivetRoute>
+                     <AdminRoute>
+                        <AddCamp></AddCamp>
+                     </AdminRoute>
+                 </PrivetRoute>
       },
       {
         path: 'manage-camp',
-        element: <ManageCamp></ManageCamp>
+        element: <PrivetRoute>
+                   <AdminRoute>
+                     <ManageCamp></ManageCamp>
+                   </AdminRoute>
+                 </PrivetRoute>
       },
       {
         path: 'manage-register',
-        element: <ManageRegister></ManageRegister>
+        element: <PrivetRoute>
+          <AdminRoute>
+            <ManageRegister></ManageRegister>
+          </AdminRoute>
+        </PrivetRoute>
       },
       {
         path: 'analytics',
-        element: <Analytics></Analytics>
+        element: <PrivetRoute>
+          <ParticipantRoute>
+             <Analytics></Analytics>
+          </ParticipantRoute>
+        </PrivetRoute>
       },
       {
         path: 'camp-register',
-        element: <CampRegister></CampRegister>
+        element: <PrivetRoute>
+          <ParticipantRoute>
+              <CampRegister></CampRegister>
+          </ParticipantRoute>
+        </PrivetRoute>
       },
       {
         path: 'payment',

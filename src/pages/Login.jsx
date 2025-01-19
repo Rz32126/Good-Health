@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import {toast, Toaster} from "react-hot-toast";
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../provider/AuthProvider';
+import { saveUser } from '../api/utils';
 
 
 const Login = () => {
@@ -12,28 +13,29 @@ const Login = () => {
         reset,
         formState: { errors },
       } = useForm()
-      const { signInWithGoogle, createUser} = useContext(AuthContext)
+      const { signInWithGoogle, signIn, user} = useContext(AuthContext)
       const navigate = useNavigate()
       const onSubmit=  async (data) => {
         console.log(data)
         const { email, password } = data;
         try {
-          const result = await createUser(email, password);
+          const result = await signIn(email, password);
           const loggedUser = result.user;
           console.log(loggedUser);
           
-          toast.success('Registration Successful');
+          toast.success('Login Successful');
           reset(); 
           navigate('/'); 
         } catch (err) {
            console.log(err);
-           toast.error(err?.message || 'Registration failed');
+           toast.error(err?.message || 'Login failed');
          }
       } 
   
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithGoogle()
+      const data = await signInWithGoogle()
+      await saveUser(data?.user)
       toast.success('Signin Successful')
       navigate('/')
       
