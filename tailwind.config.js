@@ -18,7 +18,11 @@ module.exports = withMT({
     "./src/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        banner: "url(./assets/lumitar-TGexxIZAIN4-unsplash.jpg)",
+      }
+    },
   },
   plugins: [require('daisyui')],
 });

@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className='py-4 border-b-[1px]'>
           <div className='flex items-center justify-between gap-3 md:gap-0'>
             <div className='flex gap-2 items-center'>
-              <img src="https://i.ibb.co.com/wr3cW1D/Screenshot-2025-01-18-022805.png" alt='logo' width='100' height='100' className='rounded-2xl' />
+              <img src="https://i.ibb.co.com/wr3cW1D/Screenshot-2025-01-18-022805.png" alt='logo' width='100' height='100' className='rounded-2xl ml-2' />
               <p className='font-extrabold text-2xl text-blue-500'>Good Health</p>
             </div>
             <div className='lg:flex lg:gap-9 font-semibold'>
