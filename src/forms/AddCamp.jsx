@@ -3,9 +3,11 @@ import { toast } from "react-hot-toast";
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../provider/AuthProvider';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AddCamp = () => {
     const {user} = useContext(AuthContext)
+    const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
     const {
         register,
@@ -27,8 +29,9 @@ const AddCamp = () => {
           console.log(data)
           try{
           await axios.post(`${import.meta.env.VITE_API_URL}/camps`, participant)
-          toast.success('Data added Successfully')
+          toast.success('Camp added Successfully')
           reset()
+          navigate('/available-camps')
           }catch(err){
             console.log(err)
           }

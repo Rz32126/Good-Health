@@ -6,7 +6,6 @@ import {
     Typography,
     Button,
   } from "@material-tailwind/react";
-// import { useState } from "react";
 import { Link } from "react-router-dom";
    
   export function AvailableCard({camp}) {
