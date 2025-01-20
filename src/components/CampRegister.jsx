@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import LoadingSpinner from "./LoadingSpinner";
 import { AiOutlineDelete } from "react-icons/ai";
-// import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
@@ -56,10 +55,11 @@ const CampRegister = () => {
            {/* head */}
         <thead>
           <tr className='text-black'>
+              <th>#</th>
               <th>Camp Name</th>
               <th>Camp Fee</th>
               <th>Participant Name</th>
-              <th>Payment Status</th>
+              <th>Status</th>
               <th>Payment Confirmation</th>
               <th>Feedback</th>
               <th>Delete</th>
@@ -67,12 +67,15 @@ const CampRegister = () => {
       </thead>
       <tbody>
         {
-             registers.map(registerData => <tr key={registerData._id}>
+             registers.map((registerData, index) => <tr key={registerData._id}>
+                <td>{index +1}</td>
                 <td>{registerData.CampName}</td>
                 <td>$ {registerData.fee}</td>
                 <td>{registerData.participant.name}</td>
                 <td>{registerData.status}</td>
-                <td><Link to='/dashboard/pay'><button className="btn">Pay</button></Link></td>
+                <td><Link to={`/dashboard/pay/${registerData.campId}`}><button 
+                 disabled={registerData.fee == 0}
+                 className="btn">Pay</button></Link></td>
                 <td>
                 <button className=''>Good</button>
                 </td>
@@ -83,7 +86,7 @@ const CampRegister = () => {
     </table>
 </div>
     </div>
-    </div>
+        </div>
     );
 };
 

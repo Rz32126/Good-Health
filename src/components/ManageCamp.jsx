@@ -55,6 +55,7 @@ const ManageCamp = () => {
                {/* head */}
             <thead>
               <tr className='text-black'>
+                  <th>#</th>
                   <th>Name</th>
                   <th>Date</th>
                   <th>Health Professional</th>
@@ -65,7 +66,8 @@ const ManageCamp = () => {
           </thead>
           <tbody>
             {
-                 camps.map(camp => <tr key={camp._id}>
+                 camps.map((camp, index) => <tr key={camp._id}>
+                    <td>{ index + 1 }</td>
                     <td>{camp.name}</td>
                     <td>{camp.date}</td>
                     <td>{camp.health}</td>

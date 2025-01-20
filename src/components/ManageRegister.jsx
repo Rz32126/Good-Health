@@ -70,6 +70,7 @@ const ManageRegister = () => {
                    {/* head */}
                 <thead>
                   <tr className='text-black'>
+                      <th>#</th>
                       <th>Participant Name</th>
                       <th>Camp Name</th>
                       <th>Camp Fee</th>
@@ -81,7 +82,8 @@ const ManageRegister = () => {
               </thead>
               <tbody>
                 {
-                     users.map(userData => <tr key={userData._id}>
+                     users.map((userData, index) => <tr key={userData._id}>
+                        <td>{index + 1}</td>
                         <td>{userData.participant.name}</td>
                         <td>{userData.CampName}</td>
                         <td>$ {userData.fee}</td>

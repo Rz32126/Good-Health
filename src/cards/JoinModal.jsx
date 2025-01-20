@@ -82,9 +82,9 @@ const handleRegister = async () => {
                   return{...prv, gender: e.target.value}
                  })} 
                  className="select select-bordered w-full max-w-xs">
-                    <option>Male</option>
+                    <option>Gender</option>
                     <option>Female</option>
-                    <option>Other</option>
+                    <option>Male</option>
                  </select>
             </div>
             <p>Emergency Contact: <input
