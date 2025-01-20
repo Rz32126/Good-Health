@@ -33,6 +33,7 @@ import UpdateCamp from './forms/UpdateCamp';
 import PrivetRoute from './provider/PrivetRoute';
 import AdminRoute from './provider/AdminRoute';
 import ParticipantRoute from './provider/ParticipantRoute';
+import PayDonePage from './components/PayDonePage';
 
 const queryClient = new QueryClient()
 
@@ -123,6 +124,10 @@ const router = createBrowserRouter([
       {
         path: 'payment',
         element: <Payment></Payment>
+      },
+      {
+        path: 'pay',
+        element: <PayDonePage></PayDonePage>
       },
     ]
   }

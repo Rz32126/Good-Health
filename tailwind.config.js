@@ -5,7 +5,11 @@
 //     "./src/**/*.{js,ts,jsx,tsx}"
 //   ],
 //   theme: {
-//     extend: {},
+//     extend: {
+//       backgroundImage: {
+//         banner: "url(./assets/Screenshot 2025-01-18 022021-BLVvS_vo.png)",
+//       }
+//     },
 //   },
 //   plugins: [require('daisyui')],
 // }
@@ -20,7 +24,7 @@ module.exports = withMT({
   theme: {
     extend: {
       backgroundImage: {
-        banner: "url(./assets/lumitar-TGexxIZAIN4-unsplash.jpg)",
+        banner: "url(./assets/Screenshot 2025-01-18 022021-BLVvS_vo.png)",
       }
     },
   },

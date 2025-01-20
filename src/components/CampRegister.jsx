@@ -6,6 +6,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import { AiOutlineDelete } from "react-icons/ai";
 // import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 
 const CampRegister = () => {
@@ -71,7 +72,7 @@ const CampRegister = () => {
                 <td>$ {registerData.fee}</td>
                 <td>{registerData.participant.name}</td>
                 <td>{registerData.status}</td>
-                <td>Complete</td>
+                <td><Link to='/dashboard/pay'><button className="btn">Pay</button></Link></td>
                 <td>
                 <button className=''>Good</button>
                 </td>
