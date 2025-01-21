@@ -24,6 +24,8 @@ export function Extra() {
           className="mb-1 text-blue-700 text-center text-3xl font-semibold"
         >Our Emergency Health Care
         <p className="text-xl mt-4 mb-4 text-black">You can find some emergency health care. We are now 24 hours in call with different doctors and specialist. Contact us and take consultation from your needed doctors.</p>
+        <p className="text-red-500 text-center mt-2 text-xl">Emergency Contact: +090909090</p>
+        <p className="text-center text-green-500 mb-3 text-xl">Email: emergency@emergency.com</p>
         
         </Typography>
         <div className="grid grid-cols-3 gap-2">

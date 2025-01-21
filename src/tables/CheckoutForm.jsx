@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { AuthContext } from '../provider/AuthProvider';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 
 const CheckoutForm = () => {
@@ -13,6 +13,7 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate()
 
   const {id} = useParams();
   const { data: registers = [] } = useQuery({
@@ -103,7 +104,10 @@ const CheckoutForm = () => {
         console.log('payment save' ,res)
         if(res.data?.paymentResult?.insertedId){
           toast.success('Thank You!! Your Payment Done')
-        }
+          navigate('/dashboard/payment')
+         }else{
+          console.log(err)
+         }
 
       }
     }

@@ -24,6 +24,7 @@ const [registerInfo, setRegisterInfo] = useState({
   status: 'Pending',
   CampName: name,
   fee: fee,
+  payment: 'Unpaid'
 })
 const handleRegister = async () => {
   // registerInfo.email = user?.email

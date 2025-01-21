@@ -87,8 +87,20 @@ const ManageRegister = () => {
                         <td>{userData.participant.name}</td>
                         <td>{userData.CampName}</td>
                         <td>$ {userData.fee}</td>
-                        <td>{userData.status}</td>
-                        <td>Complete</td>
+                        <td>
+                          <p className={`${userData.status === 'Pending' ? 'text-red-500' : 'text-green-500'}`}>{userData.status}</p>
+                        </td>
+                        <td>
+                        <p
+                      className={`${
+                        userData.payment === "Unpaid"
+                          ? "text-red-500"
+                          : "text-green-500"
+                      }`}
+                    >
+                      {userData.payment}
+                    </p>
+                        </td>
                         <td>
                         <div>
                            <select
@@ -100,7 +112,7 @@ const ManageRegister = () => {
           >
             <option value='Pending'>Pending</option>
             <option value='Complete'>Complete</option>
-          </select>
+                           </select>
                         </div>
                         </td>
                         <td>
@@ -114,6 +126,15 @@ const ManageRegister = () => {
               </tbody>
             </table>
         </div>
+            </div>
+            <div className="text-center">
+            <div className="join mt-9 ">
+                <button className="join-item btn bg-purple-100">1</button>
+                <button className="join-item btn">2</button>
+                <button className="join-item btn">...</button>
+                <button className="join-item btn">9</button>
+                <button className="join-item btn bg-purple-100">10</button>
+            </div>
             </div>
             </div>
     );
