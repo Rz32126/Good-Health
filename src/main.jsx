@@ -34,6 +34,7 @@ import PrivetRoute from './provider/PrivetRoute';
 import AdminRoute from './provider/AdminRoute';
 import ParticipantRoute from './provider/ParticipantRoute';
 import PayDonePage from './components/PayDonePage';
+import FeedBack from './tables/FeedBack';
 
 const queryClient = new QueryClient()
 
@@ -99,6 +100,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'manage-register',
+        loader: () => fetch('http://localhost:5000/count'),
         element: <PrivetRoute>
           <AdminRoute>
             <ManageRegister></ManageRegister>
@@ -115,6 +117,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'camp-register',
+        loader: () => fetch('http://localhost:5000/count'),
         element: <PrivetRoute>
           <ParticipantRoute>
               <CampRegister></CampRegister>
@@ -129,6 +132,10 @@ const router = createBrowserRouter([
         path: 'pay/:id',
         element: <PayDonePage></PayDonePage>
       },
+      {
+        path: 'feedback',
+        element: <FeedBack></FeedBack>
+      }
     ]
   }
 ]);

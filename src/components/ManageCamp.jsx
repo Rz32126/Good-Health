@@ -48,7 +48,7 @@ const ManageCamp = () => {
     if(isLoading) return <LoadingSpinner></LoadingSpinner>
     return (
         <div>
-            <h1 className='text-center mt-5 text-2xl font-semibold'>Manage Your Added Camps</h1>
+            <h1 className='text-center mt-5 text-2xl font-semibold'>** Manage Your Added Camps **</h1>
             <div className='mt-5 w-11/12 mx-auto bg-blue-100'>
             <div className="overflow-x-auto">
               <table className="table">

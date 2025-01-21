@@ -1,19 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import LoadingSpinner from "./LoadingSpinner";
 import { AiOutlineDelete } from "react-icons/ai";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
 const CampRegister = () => {
   const { user } = useContext(AuthContext);
+  const { count } = useLoaderData(); 
+  
+  const itemPerPage = 10; 
+  const [currentPage, setCurrentPage] = useState(1); 
+
   const { data: registers = [], isLoading, refetch } = useQuery({
-    queryKey: ["registers", user?.email],
+    queryKey: ['registers', user?.email, currentPage],
     queryFn: async () => {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/register-participant/${user?.email}`
+        `${import.meta.env.VITE_API_URL}/register-participant/${user?.email}?page=${currentPage}&limit=${itemPerPage}`
       );
       return data;
     },
@@ -34,7 +40,7 @@ const CampRegister = () => {
     }
   };
 
-  // Handle Payment Update
+  // Handle Payment
   const handlePayment = async (newPayment, _id) => {
     try {
       const { data } = await axios.patch(
@@ -43,14 +49,14 @@ const CampRegister = () => {
       );
       console.log(data);
       toast.success("Payment successfully updated");
-      refetch(); 
+      refetch();
     } catch (err) {
       console.log(err);
       toast.error(err.response.data);
     }
   };
 
-  // Confirmation for Delete
+  // delete
   const toastForDelete = (id) => {
     toast(
       (t) => (
@@ -82,15 +88,21 @@ const CampRegister = () => {
 
   if (isLoading) return <LoadingSpinner />;
 
+  const totalPages = Math.ceil(count / itemPerPage); 
+  const handlePageChange = (page) => {
+    if (page < 1 || page > totalPages) return; 
+    setCurrentPage(page); 
+  };
+
   return (
     <div>
-      <h1 className="text-center mt-5 text-2xl font-semibold">
-        Manage Your Registered Camps
+      <h1 className="text-orange-500 text-center mt-5 text-2xl font-semibold">
+        ** Manage Your Registered Camps **
       </h1>
       <div className="mt-5 ml-2 bg-orange-100 rounded-xl">
         <div className="overflow-x-auto">
           <table className="table">
-            {/* head */}
+            {/* Table Head */}
             <thead>
               <tr className="text-black">
                 <th>#</th>
@@ -100,14 +112,14 @@ const CampRegister = () => {
                 <th>Make Payment</th>
                 <th>Confirm Payment</th>
                 <th>Payment Status</th>
-                <th>Feedback</th>
+                <th className="feedback-column">Feedback</th>
                 <th>Delete</th>
               </tr>
             </thead>
             <tbody>
               {registers.map((registerData, index) => (
                 <tr key={registerData._id}>
-                  <td>{index + 1}</td>
+                  <td>{(currentPage - 1) * itemPerPage + index + 1}</td> 
                   <td>{registerData.CampName}</td>
                   <td>$ {registerData.fee}</td>
                   <td>
@@ -123,10 +135,7 @@ const CampRegister = () => {
                   </td>
                   <td>
                     <Link to={`/dashboard/pay/${registerData.campId}`}>
-                      <button
-                        disabled={registerData.fee == 0}
-                        className="btn"
-                      >
+                      <button disabled={registerData.fee == 0} className="btn">
                         Pay
                       </button>
                     </Link>
@@ -136,9 +145,7 @@ const CampRegister = () => {
                       <select
                         required
                         defaultValue={registerData.payment}
-                        onChange={(e) =>
-                          handlePayment(e.target.value, registerData._id)
-                        }
+                        onChange={(e) => handlePayment(e.target.value, registerData._id)}
                         className="p-1 border-2 border-purple-500 focus:outline-green-500 rounded-md text-gray-900 whitespace-no-wrap bg-white"
                         name="payment"
                       >
@@ -148,7 +155,7 @@ const CampRegister = () => {
                     </div>
                   </td>
                   <td>
-                  <p
+                    <p
                       className={`${
                         registerData.payment === "Unpaid"
                           ? "text-red-500"
@@ -158,9 +165,16 @@ const CampRegister = () => {
                       {registerData.payment}
                     </p>
                   </td>
-                  <td>
-                    <button className="">Good</button>
-                  </td>
+                  {registerData.payment === "Paid" && (
+                    <td>
+                      <Link to='/dashboard/feedback'>
+                        <button className="btn bg-lime-300">Feedback</button>
+                      </Link>
+                    </td>
+                  )}
+
+                  {registerData.payment !== "Paid" && <td>
+                    <p>N/A</p></td>}
                   <td>
                     <button
                       onClick={() => toastForDelete(registerData._id)}
@@ -173,6 +187,36 @@ const CampRegister = () => {
               ))}
             </tbody>
           </table>
+        </div>
+      </div>
+
+      <div className="text-center mt-4">
+        <div className="join">
+          <button
+            className="join-item btn"
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Prev
+          </button>
+
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index}
+              className={`join-item btn ${currentPage === index + 1 ? 'bg-orange-100' : ''}`}
+              onClick={() => handlePageChange(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+
+          <button
+            className="join-item btn"
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>
