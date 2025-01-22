@@ -13,9 +13,6 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import {
-  useQuery,
-  useMutation,
-  useQueryClient,
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
@@ -101,7 +98,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'manage-register',
-        loader: () => fetch('http://localhost:5000/count'),
+        loader: () => fetch('https://assignment-12-server-kappa-flame.vercel.app'),
         element: <PrivetRoute>
           <AdminRoute>
             <ManageRegister></ManageRegister>
@@ -118,7 +115,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'camp-register',
-        loader: () => fetch('http://localhost:5000/count'),
+        loader: () => fetch('https://assignment-12-server-kappa-flame.vercel.app'),
         element: <PrivetRoute>
           <ParticipantRoute>
               <CampRegister></CampRegister>
@@ -127,7 +124,9 @@ const router = createBrowserRouter([
       },
       {
         path: 'payment',
-        element: <Payment></Payment>
+        element: <PrivetRoute>
+          <Payment></Payment>
+        </PrivetRoute>
       },
       {
         path: 'pay/:id',
@@ -139,7 +138,9 @@ const router = createBrowserRouter([
       },
       {
         path: 'my-profile',
-        element: <Profile></Profile>
+        element: <PrivetRoute>
+          <Profile></Profile>
+        </PrivetRoute>
       }
     ]
   }
