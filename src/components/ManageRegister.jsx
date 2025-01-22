@@ -6,19 +6,26 @@ import LoadingSpinner from "./LoadingSpinner";
 import { MdDeleteForever } from "react-icons/md";
 import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
+import { FaSearch } from "react-icons/fa";
+
 
 const ManageRegister = () => {
   const { user } = useContext(AuthContext);
   const { count } = useLoaderData();
+  const [search, setSearch] = useState('');
   // console.log(count);
   const itemPerPage = 10; 
   const [currentPage, setCurrentPage] = useState(1); 
 
 
   const { data: users = [], isLoading, refetch } = useQuery({
-    queryKey: ['users', user?.email, currentPage],
+    queryKey: ['users', user?.email, search, currentPage],
     queryFn: async () => {
-      const { data } = await axios(`${import.meta.env.VITE_API_URL}/all-users/${user?.email}?page=${currentPage}&limit=${itemPerPage}`);
+      const { data } = await axios(`${import.meta.env.VITE_API_URL}/all-users/${user?.email}?page=${currentPage}&limit=${itemPerPage}&search=${search}`, {
+        headers: { 
+          authorization: `Bearer ${localStorage.getItem('access-token')}`
+        }
+      });
       return data;
     }
   });
@@ -80,6 +87,18 @@ const ManageRegister = () => {
   return (
     <div>
       <h1 className='text-purple-500 text-center mt-5 text-2xl font-semibold'>** Manage the Registered Participants **</h1>
+      <div className="mt-3">
+        <div className="mt-3 flex gap-4">  
+                             <span className="mt-3 ml-3"><FaSearch /></span>
+                             <input 
+                             onKeyUp={(e) => setSearch(e.target.value)}
+                             type="text"
+                             className="input w-36 max-w-2xl border border-gray-400"
+                             placeholder="Search Camps by Name"
+                             >
+                             </input>
+                    </div>
+               </div>
       <div className='mt-5 w-11/12 mx-auto bg-purple-100 rounded-xl'>
         <div className="overflow-x-auto">
           <table className="table">

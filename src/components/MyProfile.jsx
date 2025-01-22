@@ -3,6 +3,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import useRole from "../hooks/useRole";
 import LoadingSpinner from "./LoadingSpinner";
 import img from '../assets/Screenshot 2025-01-19 134408.png'
+import { Link } from "react-router-dom";
 
 
 const MyProfile = () => {
@@ -27,9 +28,11 @@ const MyProfile = () => {
     <p>Contact Number: +876666667</p>
   </div>
   <div class="flex justify-center p-6 pt-2 gap-7">
+    <Link to='/dashboard/my-profile'>
     <button class="min-w-32  rounded-md bg-green-400 py-2 px-4 border border-transparent text-center text-sm text-black transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
     Update Profile information
     </button>
+    </Link>
   </div>
 </div> 
         </div>

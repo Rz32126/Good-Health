@@ -7,19 +7,21 @@ import { AiOutlineDelete } from "react-icons/ai";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
+import { FaSearch } from "react-icons/fa";
 
 const CampRegister = () => {
   const { user } = useContext(AuthContext);
   const { count } = useLoaderData(); 
+  const [search, setSearch] = useState('');
   
   const itemPerPage = 10; 
   const [currentPage, setCurrentPage] = useState(1); 
 
   const { data: registers = [], isLoading, refetch } = useQuery({
-    queryKey: ['registers', user?.email, currentPage],
+    queryKey: ['registers', user?.email, currentPage, search],
     queryFn: async () => {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/register-participant/${user?.email}?page=${currentPage}&limit=${itemPerPage}`
+        `${import.meta.env.VITE_API_URL}/register-participant/${user?.email}?page=${currentPage}&limit=${itemPerPage}&search=${search}`
       );
       return data;
     },
@@ -99,6 +101,16 @@ const CampRegister = () => {
       <h1 className="text-orange-500 text-center mt-5 text-2xl font-semibold">
         ** Manage Your Registered Camps **
       </h1>
+            <div className="mt-3 flex gap-4">  
+                     <span className="mt-3 ml-3"><FaSearch /></span>
+                     <input 
+                     onKeyUp={(e) => setSearch(e.target.value)}
+                     type="text"
+                     className="input w-36 max-w-2xl border border-gray-400"
+                     placeholder="Search Camps by Name"
+                     >
+                     </input>
+            </div>
       <div className="mt-5 ml-2 bg-orange-100 rounded-xl">
         <div className="overflow-x-auto">
           <table className="table">

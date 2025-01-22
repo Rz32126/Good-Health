@@ -60,30 +60,20 @@ const AuthProvider = ({ children }) => {
   }
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      setUser(currentUser)
       console.log(currentUser)
       if(currentUser?.email) {
-        setUser(currentUser)
-      // if(currentUser?.displayName && currentUser?.photoURL){
-      //   await axios.post(
-      //     `${import.meta.env.VITE_API_URL}/users/${currentUser?.email}`,{
-      //      name: currentUser?.displayName, 
-      //      image: currentUser?.photoURL,
-      //      email: currentUser?.email,
-      //     }
-      //   )
-      // }
-      //   const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`,
-      //     {email: currentUser?.email}, 
-      //     { withCredentials: true }
-      //   )
-      //   console.log(data)
-      // }else {
-      //   setUser(currentUser)
-      //   const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/logout`,
-      //     { withCredentials: true }
-      //   )
+        const userInfo = {email: currentUser.email}
+        axios.post(`${import.meta.env.VITE_API_URL}/jwt`, userInfo)
+        .then(res => {
+          if(res.data.token){
+            localStorage.setItem('access-token', res.data.token)
+          }
+        })
+        
         }else{
-          setUser(currentUser)
+          localStorage.removeItem('access-token')
+          // setUser(currentUser)
         }
       setLoading(false)
     })

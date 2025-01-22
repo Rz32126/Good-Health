@@ -35,6 +35,7 @@ import AdminRoute from './provider/AdminRoute';
 import ParticipantRoute from './provider/ParticipantRoute';
 import PayDonePage from './components/PayDonePage';
 import FeedBack from './tables/FeedBack';
+import Profile from './components/Profile';
 
 const queryClient = new QueryClient()
 
@@ -135,6 +136,10 @@ const router = createBrowserRouter([
       {
         path: 'feedback',
         element: <FeedBack></FeedBack>
+      },
+      {
+        path: 'my-profile',
+        element: <Profile></Profile>
       }
     ]
   }

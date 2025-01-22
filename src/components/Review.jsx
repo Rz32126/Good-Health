@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import FeedbackCard from "../tables/FeedbackCard";
+import LoadingSpinner from "./LoadingSpinner";
 
 
 const Review = () => {
@@ -12,6 +13,7 @@ const Review = () => {
         },
     })
     // console.log(feedbacks)
+    if(isLoading) return <LoadingSpinner></LoadingSpinner>
     return (
         <div>
             <h2 className="text-3xl font-bold text-center text-green-400 mt-6 mb-4">*** Feedback and reviews ***</h2>
