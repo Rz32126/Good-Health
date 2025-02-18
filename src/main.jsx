@@ -33,6 +33,7 @@ import ParticipantRoute from './provider/ParticipantRoute';
 import PayDonePage from './components/PayDonePage';
 import FeedBack from './tables/FeedBack';
 import Profile from './components/Profile';
+import Blog from './components/Blog';
 
 const queryClient = new QueryClient()
 
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: '/available-camps',
         element: <AvailableCamp></AvailableCamp>
+      },
+      {
+        path: '/blog',
+        element: <Blog></Blog>
       },
       {
         path: '/camp-details/:id',
