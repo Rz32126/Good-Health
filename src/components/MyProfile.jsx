@@ -25,6 +25,7 @@ const MyProfile = () => {
       class="text-sm font-semibold text-slate-500 uppercase">
       Role : {role}
     </p>
+    <p>Email: {user?.email}</p>
     <p>Contact Number: +876666667</p>
   </div>
   <div class="flex justify-center p-6 pt-2 gap-7">

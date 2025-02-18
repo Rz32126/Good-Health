@@ -1,21 +1,3 @@
-// import React, { useContext } from 'react';
-// import { AuthContext } from '../provider/AuthProvider';
-// import img from '../assets/Screenshot 2025-01-19 134408.png'
-
-// const Profile = () => {
-//     const {user} = useContext(AuthContext)
-//     return (
-//         <div className='w-9/12 mx-auto'>
-//             <h1 className='text-center font-xl mt-10 text-green-400'>Update Your Profile data</h1>
-//             <div>
-                
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default Profile;
-
 import {
     Card,
     CardHeader,
@@ -23,8 +5,6 @@ import {
     CardFooter,
     Typography,
     Input,
-    Checkbox,
-    Button,
   } from "@material-tailwind/react";
    
   export default function Profile() {
