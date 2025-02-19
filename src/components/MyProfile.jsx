@@ -14,7 +14,7 @@ const MyProfile = () => {
     return (
         <div>
            <div class="flex flex-col bg-base-300 shadow-sm border border-slate-200 rounded-lg my-6 w-9/12 mx-auto">
-  <div class="m-2.5 overflow-hidden rounded-md h-80 flex justify-center items-center bg-orange-100">
+  <div class="m-2.5 overflow-hidden rounded-md h-80 flex justify-center items-center bg-blue-200">
     <img class="w-32 h-32 object-cover rounded-full" src={user && user.photoURL ? user.photoURL : img} alt="profile-picture" />
   </div>
   <div class="p-6 text-center">

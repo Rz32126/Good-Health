@@ -78,7 +78,7 @@ const Register = () => {
     }
   }
     return (
-        <div className='lg:w-5/12 mx-auto bg-yellow-300 mt-5 mb-5 rounded-2xl'>
+        <div className='lg:w-5/12 mx-auto bg-blue-300 mt-5 mb-5 rounded-2xl'>
 
         <div className='mx-7 px-5 py-12'>
 
