@@ -32,10 +32,6 @@ Your one-stop platform for all your healthcare needs. Whether you face issues re
 
 ---
 
-## 📸 Screenshot
-(Include a screenshot of your app here)
-
----
 
 ## 📦 Dependencies Used
 - **React**
@@ -57,7 +53,7 @@ Your one-stop platform for all your healthcare needs. Whether you face issues re
 
 3. Install dependencies:
    npm install
-   
+
 4. Start the development server:
    npm run dev
   
